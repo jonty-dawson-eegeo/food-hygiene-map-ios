@@ -24,7 +24,7 @@
     
     m_pCurrentMapViewController = nil;
 
-    self.mapNames = @[@"eeGeo 3D Maps", @"Apple Maps", @"Google Maps"];
+    self.mapNames = @[@"Hygiene Ratings"];
     
     [self loadMapWithName: self.mapNames[0]];
 }
@@ -64,7 +64,7 @@
     switch(sender.selectedSegmentIndex)
     {
         case 0: [m_pCurrentMapViewController goHome]; break;
-        case 1: [m_pCurrentMapViewController fitToDefaultBounds];break;
+        case 1: [m_pCurrentMapViewController toggleFlatten];break;
     }
 }
 

@@ -24,27 +24,32 @@
 @property (strong, nonatomic) EGPointAnnotation* marker2;
 @property (strong, nonatomic) EGPointAnnotation* marker3;
 
-@property (strong, nonatomic) NSTimer* timer;
+
 @end
+
 
 @implementation EegeoMapsContainerViewController
 {
-    int m_mapThemeCursor;
+    bool m_mapMode;
+    CLLocationCoordinate2D m_homeLocation;
+    double m_homeDist;
 }
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.eegeoMapApi = nil;
-    self.timer = nil;
     self.precacheOperation = nil;
     self.geoFencePoly = nil;
     self.marker1 = nil;
     self.marker2 = nil;
     self.marker3 = nil;
     
-    m_mapThemeCursor = 0;
+    m_mapMode = false;
+    m_homeLocation = CLLocationCoordinate2DMake(56.459930, -2.978064);
+    m_homeDist = 2000.0;
     
     self.eegeoMapView = [[[EGMapView alloc] initWithFrame:self.view.bounds] autorelease];
     self.eegeoMapView.eegeoMapDelegate = self;
@@ -91,12 +96,7 @@
     
     [self.eegeoMapApi removePolygon:self.geoFencePoly];
     self.geoFencePoly = nil;
-    
-    if(self.timer != nil)
-    {
-        [self.timer invalidate];
-        self.timer = nil;
-    }
+
     
     self.eegeoMapApi = nil;
     
@@ -109,71 +109,65 @@
 {
     self.eegeoMapApi = api;
     [self handleMapAvailable];
-    
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:10
-                                                  target:self
-                                                selector:@selector(cycleMapTheme)
-                                                userInfo:nil
-                                                 repeats:YES];
+
 }
+
 
 -(void)goHome
 {
     if(self.eegeoMapApi != nil)
     {
-        [self setLocation:YES];
+        [self moveTo:m_homeLocation distanceMetres:m_homeDist ];
     }
 }
 
--(void)fitToDefaultBounds
+-(void)toggleFlatten
 {
     if(self.eegeoMapApi != nil)
     {
-        [self setCoordinateBounds];
+        [self toggleMapMode];
     }
 }
 
 - (void)handleMapAvailable
 {
-    [self setLocation:NO];
-    [self addGeofencePolygon];
-    [self addAnnotations];
-    [self precacheBounds];
-    [self cycleMapTheme];
+    [self setLocation:m_homeLocation distanceMetres:m_homeDist ];
+    //[self addGeofencePolygon];
+    //[self addAnnotations];
+    //[self precacheBounds];
+    [self updateTheme];
 }
 
-- (void)cycleMapTheme
+- (void)toggleMapMode
+{
+    m_mapMode = !m_mapMode;
+    [self updateTheme];
+}
+
+- (void)updateTheme
 {
     EGMapTheme* mapTheme = nil;
     
     [self.eegeoMapApi setEnvironmentFlatten:false];
     
-    switch(m_mapThemeCursor)
+    if (m_mapMode)
     {
-        case 0:
-            mapTheme = [[[EGMapTheme alloc] initWithSeason: EGMapThemeSeasonSummer
-                                                   andTime: EGMapThemeTimeDay
-                                                andWeather: EGMapThemeWeatherClear] autorelease];
-            [self.geoFencePoly setColor:1.0f g:0.f b:0.f a:0.2f];
-            break;
-        case 1:
-            mapTheme = [[[EGMapTheme alloc] initWithSeason: EGMapThemeSeasonSummer
-                                                   andTime: EGMapThemeTimeNight
-                                                andWeather: EGMapThemeWeatherClear] autorelease];
-            [self.geoFencePoly setColor:0.9f g:0.9f b:0.9f a:0.3f];
-            break;
-        case 2:
-            mapTheme = [[[EGMapTheme alloc] initWithSeason: EGMapThemeSeasonSummer
-                                         andThemeStateName: @"MapMode"] autorelease];
-            
-            [self.eegeoMapApi setEnvironmentFlatten:true];
-            [self.geoFencePoly setColor:0.1f g:0.1f b:0.1f a:0.3f];
-            break;
+        mapTheme = [[[EGMapTheme alloc] initWithSeason: EGMapThemeSeasonSummer
+                                     andThemeStateName: @"MapMode"] autorelease];
+        
+        [self.eegeoMapApi setEnvironmentFlatten:true];
+        [self.geoFencePoly setColor:0.1f g:0.1f b:0.1f a:0.3f];
+
+    }
+    else
+    {
+        mapTheme = [[[EGMapTheme alloc] initWithSeason: EGMapThemeSeasonSummer
+                                               andTime: EGMapThemeTimeDay
+                                            andWeather: EGMapThemeWeatherClear] autorelease];
+        [self.geoFencePoly setColor:1.0f g:0.f b:0.f a:0.2f];
     }
     
     [self.eegeoMapApi setMapTheme: mapTheme];
-    
-    m_mapThemeCursor = (m_mapThemeCursor + 1) % 3;
 }
 
 - (void)flattenEnvironment
@@ -181,12 +175,24 @@
     [self.eegeoMapApi setEnvironmentFlatten:false];
 }
 
-- (void)setLocation:(BOOL)animated
+
+- (void)setLocation:(CLLocationCoordinate2D)location
+             distanceMetres:(double)distanceMetres
 {
-    [self.eegeoMapApi setCenterCoordinate:CLLocationCoordinate2DMake(37.793436, -122.398654)
-                           distanceMetres:2000.0
+    [self.eegeoMapApi setCenterCoordinate:location
+                           distanceMetres:(float)distanceMetres
                        orientationDegrees:0.f
-                                 animated:animated];
+                                 animated:NO];
+}
+
+
+- (void)moveTo:(CLLocationCoordinate2D)location
+        distanceMetres:(double)distanceMetres
+{
+    [self.eegeoMapApi setCenterCoordinate:location
+                           distanceMetres:(float)distanceMetres
+                       orientationDegrees:0.f
+                                 animated:YES];
 }
 
 -(void)setCoordinateBounds

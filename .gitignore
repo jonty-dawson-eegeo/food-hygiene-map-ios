@@ -21,5 +21,6 @@ Include
 project.properties
 **/xcuserdata/
 eeGeoApiExample.xcworkspace/contents.xcworkspacedata
+*.xcscheme
 Podfile.lock
 Pods/

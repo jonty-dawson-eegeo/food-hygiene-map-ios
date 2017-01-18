@@ -6,6 +6,6 @@
 
 -(void)goHome;
 
--(void)fitToDefaultBounds;
+-(void)toggleFlatten;
 
 @end
