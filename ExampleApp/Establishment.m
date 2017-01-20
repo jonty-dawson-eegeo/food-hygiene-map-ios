@@ -36,7 +36,34 @@
         self.localAuthorityName = json[@"LocalAuthorityName"];
         
         self.title = _businessName;
-        self.subtitle = _ratingValue;
+
+        // not available through Rating api results, values here taken from text in ratings images
+        NSDictionary *ratingNameLookup = @{
+                            @"0": @"Urgent Improvement Necessary",
+                            @"1": @"Major Improvement Necessary",
+                            @"2": @"Improvement Necessary",
+                            @"3": @"Generally Satisfactory",
+                            @"4": @"Good",
+                            @"5": @"Very Good"
+                            };
+        
+        
+        if ([self.schemeType isEqual: @"FHRS"])
+        {
+            NSString* name = ratingNameLookup[_ratingValue];
+            if (name)
+            {
+                self.subtitle = name;
+            }
+            else
+            {
+                self.subtitle = [NSString stringWithFormat:@"Rating: %@", _ratingValue];
+            }
+        }
+        else
+        {
+            self.subtitle = _ratingValue;
+        }
 
     }
     

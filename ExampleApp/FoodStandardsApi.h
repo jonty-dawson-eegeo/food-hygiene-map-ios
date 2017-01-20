@@ -9,6 +9,8 @@
 
 - (void) fetchEstablishmentsAroundLocation: (CLLocationCoordinate2D) location withMaxRadiusMiles:(int) maxRadiusMiles andExecuteBlock: ( void (^) (BOOL success, NSArray * entries) ) block;
 
+- (void) fetchRatings: ( void (^) (BOOL success, NSArray * entries) ) block;
+
 - (void) fetchAuthorities: ( void (^) (BOOL success, NSArray * entries) ) block;
 
 - (void) fetchBusinessTypes: ( void (^) (BOOL success, NSArray * entries) ) block;

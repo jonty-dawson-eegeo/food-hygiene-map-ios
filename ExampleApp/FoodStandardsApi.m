@@ -69,6 +69,13 @@ NSURLRequest* buildApiRequest(NSURL *url)
     [requestOperation start];
 }
 
+- (void) fetchRatings: ( void (^) (BOOL success, NSArray * entries) ) block
+{
+    NSURL * url = [self composeRatingsURL];
+    
+    [self fetchEntriesForUrl:url withKey:@"ratings" andExecuteBlock:block];
+}
+
 - (void) fetchAuthorities: ( void (^) (BOOL success, NSArray * entries) ) block
 {
     NSURL * url = [self composeAuthoritiesURL];
@@ -108,6 +115,13 @@ NSURLRequest* buildApiRequest(NSURL *url)
     
     NSLog(@"%@", url);
     return url;
+}
+
+
+- (NSURL*) composeRatingsURL
+{
+    NSString *const endpoint = [NSString stringWithFormat:@"%@%@", apiBaseUrl, @"Ratings"];
+    return [NSURL URLWithString:endpoint];
 }
 
 - (NSURL*) composeBusinessTypesURL

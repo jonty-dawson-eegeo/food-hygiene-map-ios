@@ -20,20 +20,15 @@
 @interface EegeoMapsContainerViewController ()
 @property (strong, nonatomic) EGMapView* eegeoMapView;
 
+@property (nonatomic, strong) NSArray * ratings;
+
 @property (nonatomic, strong) NSArray * businessTypes;
 
 @property (nonatomic, strong) NSArray * authorities;
 
 @property (nonatomic, strong) NSArray * establishments;
 
-
-@property (strong, nonatomic) id<EGPrecacheOperation> precacheOperation;
 @property (strong, nonatomic) id<EGPolygon> geoFencePoly;
-
-@property (strong, nonatomic) EGPointAnnotation* marker1;
-@property (strong, nonatomic) EGPointAnnotation* marker2;
-@property (strong, nonatomic) EGPointAnnotation* marker3;
-
 
 @end
 
@@ -52,11 +47,7 @@
     [super viewDidLoad];
     
     self.eegeoMapApi = nil;
-    self.precacheOperation = nil;
     self.geoFencePoly = nil;
-    self.marker1 = nil;
-    self.marker2 = nil;
-    self.marker3 = nil;
     
     m_mapMode = false;
     m_homeLocation = CLLocationCoordinate2DMake(56.459930, -2.978064);
@@ -68,6 +59,7 @@
     
     [self.view insertSubview:self.eegeoMapView atIndex:0];
     
+    //[self fetchRagings];
     //[self fetchAuthorities];
     //[self fetchBusinessTypes];
     
@@ -122,22 +114,11 @@
 {
     [super viewWillDisappear:(BOOL)animated];
     
-    if(self.precacheOperation != nil)
-    {
-        [self.precacheOperation cancel];
-        self.precacheOperation = nil;
-    }
-    
     self.locationManager.delegate = nil;
     [self.locationManager stopUpdatingLocation];
     self.locationManager = nil;
-    
-    [self.eegeoMapApi removeAnnotation: self.marker1];
-    [self.eegeoMapApi removeAnnotation: self.marker2];
-    [self.eegeoMapApi removeAnnotation: self.marker3];
-    self.marker1 = nil;
-    self.marker2 = nil;
-    self.marker3 = nil;
+
+    [self setEstablishments: @[]];
     
     [self.eegeoMapApi removePolygon:self.geoFencePoly];
     self.geoFencePoly = nil;
@@ -245,41 +226,8 @@
                                  animated:YES];
 }
 
--(void)setCoordinateBounds
-{
-    CLLocationCoordinate2D coordinates[] = {
-        CLLocationCoordinate2DMake(37.797818, -122.407015),
-        CLLocationCoordinate2DMake(37.798886, -122.398238),
-        CLLocationCoordinate2DMake(37.798547, -122.397831),
-        CLLocationCoordinate2DMake(37.795482, -122.396736),
-        CLLocationCoordinate2DMake(37.794159, -122.395116),
-        CLLocationCoordinate2DMake(37.786647, -122.404697)
-    };
-    NSUInteger numberOfCoordinates = sizeof(coordinates) / sizeof(CLLocationCoordinate2D);
-    
-    EGCoordinateBounds bounds = EGCoordinateBoundsFromCoordinatesMake(coordinates, numberOfCoordinates);
-    
-    [self.eegeoMapApi setVisibleCoordinateBounds:bounds animated:YES];
-}
 
-- (void)addGeofencePolygon
-{
-    CLLocationCoordinate2D coordinates[] = {
-        CLLocationCoordinate2DMake(37.797818, -122.407015),
-        CLLocationCoordinate2DMake(37.798886, -122.398238),
-        CLLocationCoordinate2DMake(37.798547, -122.397831),
-        CLLocationCoordinate2DMake(37.795482, -122.396736),
-        CLLocationCoordinate2DMake(37.794159, -122.395116),
-        CLLocationCoordinate2DMake(37.786647, -122.404697)
-    };
-    NSUInteger numberOfCoordinates = sizeof(coordinates) / sizeof(CLLocationCoordinate2D);
-    
-    self.geoFencePoly = [self.eegeoMapApi polygonWithCoordinates:coordinates count:numberOfCoordinates];
-    
-    [self.geoFencePoly setColor:1.0f g:0.0f b:0.0f a:0.2f];
-    
-    [self.eegeoMapApi addPolygon:self.geoFencePoly];
-}
+
 
 
 - (EGAnnotationView*)viewForAnnotation:(id<EGAnnotation>)annotation
@@ -442,6 +390,22 @@
     }];
 }
 
+
+- (void)fetchRatings
+{
+    [[FoodStandardsApi sharedInstance] fetchRatings:^(BOOL success, NSArray *ratings)
+     {
+         if (success)
+         {
+             _ratings = ratings;
+         }
+         else
+         {
+             _ratings = @[];
+         }
+     }];
+    
+}
 
 - (void)fetchAuthorities
 {
