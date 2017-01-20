@@ -9,7 +9,7 @@
         <!--Eegeo Maps Container View Controller-->
         <scene sceneID="4">
             <objects>
-                <viewController storyboardIdentifier="Hygiene Ratings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2" customClass="EegeoMapsContainerViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UK Food Hygiene Ratings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2" customClass="EegeoMapsContainerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4jK-ci-ON7"/>
                         <viewControllerLayoutGuide type="bottom" id="dcY-4i-TwF"/>
@@ -26,7 +26,7 @@
             </objects>
             <point key="canvasLocation" x="-2311" y="43"/>
         </scene>
-        <!--Main View Controller-->
+        <!--UK Food Hygiene Ratings-->
         <scene sceneID="gso-hN-ahe">
             <objects>
                 <viewController id="7GB-P8-alG" customClass="MainViewController" sceneMemberID="viewController">
@@ -47,11 +47,12 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="EPp-9d-HyX"/>
-                                    <barButtonItem style="plain" id="fft-P4-S34">
-                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" apportionsSegmentWidthsByContent="YES" segmentControlStyle="bordered" momentary="YES" id="3Pq-XV-Gve" userLabel="Home, Flatten">
-                                            <rect key="frame" x="834" y="6" width="170" height="32"/>
+                                    <barButtonItem title="Item" style="plain" id="fft-P4-S34">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" apportionsSegmentWidthsByContent="YES" segmentControlStyle="bordered" momentary="YES" id="3Pq-XV-Gve" userLabel="Refresh, Home, Flatten">
+                                            <rect key="frame" x="834" y="7" width="170" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
+                                                <segment title="Refresh"/>
                                                 <segment title="Home"/>
                                                 <segment title="Flatten"/>
                                             </segments>
@@ -80,7 +81,7 @@
                             <constraint firstAttribute="trailing" secondItem="0TB-nG-58L" secondAttribute="trailing" id="pMm-mk-CH5"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="X1a-oi-VWb"/>
+                    <navigationItem key="navigationItem" title="UK Food Hygiene Ratings" id="X1a-oi-VWb"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AV0-qF-hao" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -14,8 +14,6 @@
 		1890C03F1B551C190037F289 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186943841B4ED01E00B8776D /* MapKit.framework */; };
 		1890C0541B5671B80037F289 /* EegeoMapsContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1890C0521B5671B80037F289 /* EegeoMapsContainerViewController.m */; };
 		18A481761B7E1DD50038FB8A /* custom_annotation_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A481741B7E1DD50038FB8A /* custom_annotation_image.png */; };
-		18A4817F1B7E22CB0038FB8A /* AppleCustomAnnotationView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18A481791B7E22CB0038FB8A /* AppleCustomAnnotationView.mm */; };
-		18A481811B7E22CB0038FB8A /* AppleCustomAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A4817A1B7E22CB0038FB8A /* AppleCustomAnnotationView.xib */; };
 		18A481831B7E22CB0038FB8A /* EegeoCustomAnnotationView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18A4817C1B7E22CB0038FB8A /* EegeoCustomAnnotationView.mm */; };
 		18A481851B7E22CB0038FB8A /* EegeoCustomAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A4817D1B7E22CB0038FB8A /* EegeoCustomAnnotationView.xib */; };
 		18A87A041B83663900AAAC09 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A87A021B83663900AAAC09 /* MainViewController.m */; };
@@ -51,8 +49,26 @@
 		7EB2032A1E0190B4002F2BE4 /* pin_sheet_0@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB203261E0190B4002F2BE4 /* pin_sheet_0@3x.png */; };
 		7EB2032B1E0190B4002F2BE4 /* pin_sheet.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EB203271E0190B4002F2BE4 /* pin_sheet.json */; };
 		A1D56150BAD92A3D4CA2D5F8 /* libPods-eeGeoApiExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E14F9971CBF128659F200EDA /* libPods-eeGeoApiExample.a */; };
+		E00296FC1E32258D008F2CA6 /* fhis_awaiting_inspection.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E00296ED1E32258D008F2CA6 /* fhis_awaiting_inspection.jpg */; };
+		E00296FD1E32258D008F2CA6 /* fhis_awaiting_publication.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E00296EE1E32258D008F2CA6 /* fhis_awaiting_publication.jpg */; };
+		E00296FE1E32258D008F2CA6 /* fhis_exempt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E00296EF1E32258D008F2CA6 /* fhis_exempt.jpg */; };
+		E00296FF1E32258D008F2CA6 /* fhis_improvement_required.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E00296F01E32258D008F2CA6 /* fhis_improvement_required.jpg */; };
+		E00297001E32258D008F2CA6 /* fhis_pass_and_eat_safe.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E00296F11E32258D008F2CA6 /* fhis_pass_and_eat_safe.jpg */; };
+		E00297011E32258D008F2CA6 /* fhis_pass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E00296F21E32258D008F2CA6 /* fhis_pass.jpg */; };
+		E00297021E32258D008F2CA6 /* fhrs_0_en-gb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E00296F31E32258D008F2CA6 /* fhrs_0_en-gb.jpg */; };
+		E00297031E32258D008F2CA6 /* fhrs_1_en-gb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E00296F41E32258D008F2CA6 /* fhrs_1_en-gb.jpg */; };
+		E00297041E32258D008F2CA6 /* fhrs_2_en-gb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E00296F51E32258D008F2CA6 /* fhrs_2_en-gb.jpg */; };
+		E00297051E32258D008F2CA6 /* fhrs_3_en-gb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E00296F61E32258D008F2CA6 /* fhrs_3_en-gb.jpg */; };
+		E00297061E32258D008F2CA6 /* fhrs_4_en-gb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E00296F71E32258D008F2CA6 /* fhrs_4_en-gb.jpg */; };
+		E00297071E32258D008F2CA6 /* fhrs_5_en-gb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E00296F81E32258D008F2CA6 /* fhrs_5_en-gb.jpg */; };
+		E00297081E32258D008F2CA6 /* fhrs_awaitinginspection_en-gb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E00296F91E32258D008F2CA6 /* fhrs_awaitinginspection_en-gb.jpg */; };
+		E00297091E32258D008F2CA6 /* fhrs_awaitingpublication_en-gb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E00296FA1E32258D008F2CA6 /* fhrs_awaitingpublication_en-gb.jpg */; };
+		E002970A1E32258D008F2CA6 /* fhrs_exempt_en-gb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E00296FB1E32258D008F2CA6 /* fhrs_exempt_en-gb.jpg */; };
 		E096AE1D19F6713300C3D04A /* SplashScreen-1024x768.png in Resources */ = {isa = PBXBuildFile; fileRef = E096AE1B19F6713300C3D04A /* SplashScreen-1024x768.png */; };
 		E0B9CF9319F697090012D0B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E096AE1919F670F100C3D04A /* Images.xcassets */; };
+		E0CF30E11E30FAFE003D119A /* BusinessType.m in Sources */ = {isa = PBXBuildFile; fileRef = E0CF30E01E30FAFE003D119A /* BusinessType.m */; };
+		E0CF30E41E30FEF5003D119A /* FoodStandardsApi.m in Sources */ = {isa = PBXBuildFile; fileRef = E0CF30E31E30FEF5003D119A /* FoodStandardsApi.m */; };
+		E0CF30E71E312750003D119A /* Establishment.m in Sources */ = {isa = PBXBuildFile; fileRef = E0CF30E61E312750003D119A /* Establishment.m */; };
 		E0CF7CAE1DFB23BA00F8DF93 /* Interiors in Resources */ = {isa = PBXBuildFile; fileRef = E0CF7CAA1DFB23BA00F8DF93 /* Interiors */; };
 		E0CF7CAF1DFB23BA00F8DF93 /* Labels in Resources */ = {isa = PBXBuildFile; fileRef = E0CF7CAB1DFB23BA00F8DF93 /* Labels */; };
 		E0CF7CB01DFB23BA00F8DF93 /* opensans_semibold_sdf_0.png in Resources */ = {isa = PBXBuildFile; fileRef = E0CF7CAC1DFB23BA00F8DF93 /* opensans_semibold_sdf_0.png */; };
@@ -71,9 +87,6 @@
 		1890C0511B56718A0037F289 /* EegeoMapsContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EegeoMapsContainerViewController.h; sourceTree = "<group>"; };
 		1890C0521B5671B80037F289 /* EegeoMapsContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EegeoMapsContainerViewController.m; sourceTree = "<group>"; };
 		18A481741B7E1DD50038FB8A /* custom_annotation_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = custom_annotation_image.png; sourceTree = "<group>"; };
-		18A481781B7E22CB0038FB8A /* AppleCustomAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleCustomAnnotationView.h; sourceTree = "<group>"; };
-		18A481791B7E22CB0038FB8A /* AppleCustomAnnotationView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppleCustomAnnotationView.mm; sourceTree = "<group>"; };
-		18A4817A1B7E22CB0038FB8A /* AppleCustomAnnotationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppleCustomAnnotationView.xib; sourceTree = "<group>"; };
 		18A4817B1B7E22CB0038FB8A /* EegeoCustomAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EegeoCustomAnnotationView.h; sourceTree = "<group>"; };
 		18A4817C1B7E22CB0038FB8A /* EegeoCustomAnnotationView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EegeoCustomAnnotationView.mm; sourceTree = "<group>"; };
 		18A4817D1B7E22CB0038FB8A /* EegeoCustomAnnotationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EegeoCustomAnnotationView.xib; sourceTree = "<group>"; };
@@ -122,8 +135,29 @@
 		9E71FE594D2ACE87B985B23A /* Pods-SDKSamplesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDKSamplesApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SDKSamplesApp/Pods-SDKSamplesApp.release.xcconfig"; sourceTree = "<group>"; };
 		A54F20E415082A7836B13D0B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6E66CEDF73EA4746BEDFCCC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		E00296ED1E32258D008F2CA6 /* fhis_awaiting_inspection.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = fhis_awaiting_inspection.jpg; path = rating_images/large/326ppi/fhis_awaiting_inspection.jpg; sourceTree = "<group>"; };
+		E00296EE1E32258D008F2CA6 /* fhis_awaiting_publication.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = fhis_awaiting_publication.jpg; path = rating_images/large/326ppi/fhis_awaiting_publication.jpg; sourceTree = "<group>"; };
+		E00296EF1E32258D008F2CA6 /* fhis_exempt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = fhis_exempt.jpg; path = rating_images/large/326ppi/fhis_exempt.jpg; sourceTree = "<group>"; };
+		E00296F01E32258D008F2CA6 /* fhis_improvement_required.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = fhis_improvement_required.jpg; path = rating_images/large/326ppi/fhis_improvement_required.jpg; sourceTree = "<group>"; };
+		E00296F11E32258D008F2CA6 /* fhis_pass_and_eat_safe.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = fhis_pass_and_eat_safe.jpg; path = rating_images/large/326ppi/fhis_pass_and_eat_safe.jpg; sourceTree = "<group>"; };
+		E00296F21E32258D008F2CA6 /* fhis_pass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = fhis_pass.jpg; path = rating_images/large/326ppi/fhis_pass.jpg; sourceTree = "<group>"; };
+		E00296F31E32258D008F2CA6 /* fhrs_0_en-gb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "fhrs_0_en-gb.jpg"; path = "rating_images/large/326ppi/fhrs_0_en-gb.jpg"; sourceTree = "<group>"; };
+		E00296F41E32258D008F2CA6 /* fhrs_1_en-gb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "fhrs_1_en-gb.jpg"; path = "rating_images/large/326ppi/fhrs_1_en-gb.jpg"; sourceTree = "<group>"; };
+		E00296F51E32258D008F2CA6 /* fhrs_2_en-gb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "fhrs_2_en-gb.jpg"; path = "rating_images/large/326ppi/fhrs_2_en-gb.jpg"; sourceTree = "<group>"; };
+		E00296F61E32258D008F2CA6 /* fhrs_3_en-gb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "fhrs_3_en-gb.jpg"; path = "rating_images/large/326ppi/fhrs_3_en-gb.jpg"; sourceTree = "<group>"; };
+		E00296F71E32258D008F2CA6 /* fhrs_4_en-gb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "fhrs_4_en-gb.jpg"; path = "rating_images/large/326ppi/fhrs_4_en-gb.jpg"; sourceTree = "<group>"; };
+		E00296F81E32258D008F2CA6 /* fhrs_5_en-gb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "fhrs_5_en-gb.jpg"; path = "rating_images/large/326ppi/fhrs_5_en-gb.jpg"; sourceTree = "<group>"; };
+		E00296F91E32258D008F2CA6 /* fhrs_awaitinginspection_en-gb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "fhrs_awaitinginspection_en-gb.jpg"; path = "rating_images/large/326ppi/fhrs_awaitinginspection_en-gb.jpg"; sourceTree = "<group>"; };
+		E00296FA1E32258D008F2CA6 /* fhrs_awaitingpublication_en-gb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "fhrs_awaitingpublication_en-gb.jpg"; path = "rating_images/large/326ppi/fhrs_awaitingpublication_en-gb.jpg"; sourceTree = "<group>"; };
+		E00296FB1E32258D008F2CA6 /* fhrs_exempt_en-gb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "fhrs_exempt_en-gb.jpg"; path = "rating_images/large/326ppi/fhrs_exempt_en-gb.jpg"; sourceTree = "<group>"; };
 		E096AE1919F670F100C3D04A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E096AE1B19F6713300C3D04A /* SplashScreen-1024x768.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SplashScreen-1024x768.png"; sourceTree = "<group>"; };
+		E0CF30DF1E30FAE8003D119A /* BusinessType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessType.h; sourceTree = "<group>"; };
+		E0CF30E01E30FAFE003D119A /* BusinessType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessType.m; sourceTree = "<group>"; };
+		E0CF30E21E30FE7C003D119A /* FoodStandardsApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodStandardsApi.h; sourceTree = "<group>"; };
+		E0CF30E31E30FEF5003D119A /* FoodStandardsApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodStandardsApi.m; sourceTree = "<group>"; };
+		E0CF30E51E312744003D119A /* Establishment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Establishment.h; sourceTree = "<group>"; };
+		E0CF30E61E312750003D119A /* Establishment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Establishment.m; sourceTree = "<group>"; };
 		E0CF7CAA1DFB23BA00F8DF93 /* Interiors */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Interiors; sourceTree = "<group>"; };
 		E0CF7CAB1DFB23BA00F8DF93 /* Labels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Labels; sourceTree = "<group>"; };
 		E0CF7CAC1DFB23BA00F8DF93 /* opensans_semibold_sdf_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = opensans_semibold_sdf_0.png; sourceTree = "<group>"; };
@@ -161,9 +195,6 @@
 		18A481771B7E22CB0038FB8A /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				18A481781B7E22CB0038FB8A /* AppleCustomAnnotationView.h */,
-				18A481791B7E22CB0038FB8A /* AppleCustomAnnotationView.mm */,
-				18A4817A1B7E22CB0038FB8A /* AppleCustomAnnotationView.xib */,
 				18A4817B1B7E22CB0038FB8A /* EegeoCustomAnnotationView.h */,
 				18A4817C1B7E22CB0038FB8A /* EegeoCustomAnnotationView.mm */,
 				18A4817D1B7E22CB0038FB8A /* EegeoCustomAnnotationView.xib */,
@@ -234,6 +265,12 @@
 				1890C0521B5671B80037F289 /* EegeoMapsContainerViewController.m */,
 				E096AE1919F670F100C3D04A /* Images.xcassets */,
 				7EE481F316836F370006E99B /* Supporting Files */,
+				E0CF30DF1E30FAE8003D119A /* BusinessType.h */,
+				E0CF30E01E30FAFE003D119A /* BusinessType.m */,
+				E0CF30E21E30FE7C003D119A /* FoodStandardsApi.h */,
+				E0CF30E31E30FEF5003D119A /* FoodStandardsApi.m */,
+				E0CF30E51E312744003D119A /* Establishment.h */,
+				E0CF30E61E312750003D119A /* Establishment.m */,
 			);
 			path = ExampleApp;
 			sourceTree = "<group>";
@@ -255,6 +292,7 @@
 		7EE4825B16847E7C0006E99B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E00296EA1E314F1D008F2CA6 /* rating_images */,
 				E0CF7CAA1DFB23BA00F8DF93 /* Interiors */,
 				E0CF7CAB1DFB23BA00F8DF93 /* Labels */,
 				E0CF7CAC1DFB23BA00F8DF93 /* opensans_semibold_sdf_0.png */,
@@ -282,6 +320,28 @@
 				18D1D363194A0EA000FAA1B9 /* platform_assets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		E00296EA1E314F1D008F2CA6 /* rating_images */ = {
+			isa = PBXGroup;
+			children = (
+				E00296ED1E32258D008F2CA6 /* fhis_awaiting_inspection.jpg */,
+				E00296EE1E32258D008F2CA6 /* fhis_awaiting_publication.jpg */,
+				E00296EF1E32258D008F2CA6 /* fhis_exempt.jpg */,
+				E00296F01E32258D008F2CA6 /* fhis_improvement_required.jpg */,
+				E00296F11E32258D008F2CA6 /* fhis_pass_and_eat_safe.jpg */,
+				E00296F21E32258D008F2CA6 /* fhis_pass.jpg */,
+				E00296F31E32258D008F2CA6 /* fhrs_0_en-gb.jpg */,
+				E00296F41E32258D008F2CA6 /* fhrs_1_en-gb.jpg */,
+				E00296F51E32258D008F2CA6 /* fhrs_2_en-gb.jpg */,
+				E00296F61E32258D008F2CA6 /* fhrs_3_en-gb.jpg */,
+				E00296F71E32258D008F2CA6 /* fhrs_4_en-gb.jpg */,
+				E00296F81E32258D008F2CA6 /* fhrs_5_en-gb.jpg */,
+				E00296F91E32258D008F2CA6 /* fhrs_awaitinginspection_en-gb.jpg */,
+				E00296FA1E32258D008F2CA6 /* fhrs_awaitingpublication_en-gb.jpg */,
+				E00296FB1E32258D008F2CA6 /* fhrs_exempt_en-gb.jpg */,
+			);
+			name = rating_images;
 			sourceTree = "<group>";
 		};
 		FAA92A794079F952FD543B21 /* Pods */ = {
@@ -355,6 +415,7 @@
 			files = (
 				186D2936196D9E4B00E004E0 /* placeholder.pvr in Resources */,
 				3A3A7DAF1D47715F00296F45 /* default_water_reflection_cube_map_posZ.png in Resources */,
+				E00297041E32258D008F2CA6 /* fhrs_2_en-gb.jpg in Resources */,
 				3A3A7DAB1D47715F00296F45 /* default_water_reflection_cube_map_negY.png in Resources */,
 				2CD12BB51D90475500B49AD7 /* placeholder_cube_negZ.png in Resources */,
 				2CD12BB71D90475500B49AD7 /* placeholder_cube_posY.png in Resources */,
@@ -363,29 +424,42 @@
 				7EB203291E0190B4002F2BE4 /* pin_sheet_0@2x.png in Resources */,
 				186D293B196D9E4B00E004E0 /* pins_example in Resources */,
 				2CD12BB81D90475500B49AD7 /* placeholder_cube_posZ.png in Resources */,
+				E00297031E32258D008F2CA6 /* fhrs_1_en-gb.jpg in Resources */,
 				3A3A7DAC1D47715F00296F45 /* default_water_reflection_cube_map_negZ.png in Resources */,
 				E0CF7CB01DFB23BA00F8DF93 /* opensans_semibold_sdf_0.png in Resources */,
 				3A3A7DAD1D47715F00296F45 /* default_water_reflection_cube_map_posX.png in Resources */,
 				18A481851B7E22CB0038FB8A /* EegeoCustomAnnotationView.xib in Resources */,
+				E00297081E32258D008F2CA6 /* fhrs_awaitinginspection_en-gb.jpg in Resources */,
 				E0CF7CAE1DFB23BA00F8DF93 /* Interiors in Resources */,
 				7EB2032B1E0190B4002F2BE4 /* pin_sheet.json in Resources */,
 				18A481761B7E1DD50038FB8A /* custom_annotation_image.png in Resources */,
 				E0B9CF9319F697090012D0B4 /* Images.xcassets in Resources */,
 				2CD12BB31D90475500B49AD7 /* placeholder_cube_negX.png in Resources */,
 				E096AE1D19F6713300C3D04A /* SplashScreen-1024x768.png in Resources */,
+				E00297071E32258D008F2CA6 /* fhrs_5_en-gb.jpg in Resources */,
+				E00297001E32258D008F2CA6 /* fhis_pass_and_eat_safe.jpg in Resources */,
+				E00296FD1E32258D008F2CA6 /* fhis_awaiting_publication.jpg in Resources */,
 				7EB203281E0190B4002F2BE4 /* pin_sheet_0.png in Resources */,
 				E0CF7CAF1DFB23BA00F8DF93 /* Labels in Resources */,
+				E00297011E32258D008F2CA6 /* fhis_pass.jpg in Resources */,
 				222E06991948B08B0004FFD9 /* InfoPlist.strings in Resources */,
 				3A3A7DAA1D47715F00296F45 /* default_water_reflection_cube_map_negX.png in Resources */,
-				18A481811B7E22CB0038FB8A /* AppleCustomAnnotationView.xib in Resources */,
+				E002970A1E32258D008F2CA6 /* fhrs_exempt_en-gb.jpg in Resources */,
 				2CD12BB61D90475500B49AD7 /* placeholder_cube_posX.png in Resources */,
 				222E069A1948B08B0004FFD9 /* MainStoryboard_iPhone.storyboard in Resources */,
+				E00297091E32258D008F2CA6 /* fhrs_awaitingpublication_en-gb.jpg in Resources */,
+				E00296FF1E32258D008F2CA6 /* fhis_improvement_required.jpg in Resources */,
 				F3B59B901D8ADBC80021493A /* embedded_manifest.bin in Resources */,
 				E0CF7CB11DFB23BA00F8DF93 /* opensans_semibold_sdf.fnt in Resources */,
+				E00297051E32258D008F2CA6 /* fhrs_3_en-gb.jpg in Resources */,
 				2CD12BB21D90475500B49AD7 /* EmbeddedTheme in Resources */,
+				E00296FC1E32258D008F2CA6 /* fhis_awaiting_inspection.jpg in Resources */,
+				E00297021E32258D008F2CA6 /* fhrs_0_en-gb.jpg in Resources */,
 				3A3A7DAE1D47715F00296F45 /* default_water_reflection_cube_map_posY.png in Resources */,
 				7EB2032A1E0190B4002F2BE4 /* pin_sheet_0@3x.png in Resources */,
+				E00296FE1E32258D008F2CA6 /* fhis_exempt.jpg in Resources */,
 				222E069B1948B08B0004FFD9 /* MainStoryboard_iPad.storyboard in Resources */,
+				E00297061E32258D008F2CA6 /* fhrs_4_en-gb.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,8 +521,10 @@
 				1890C0541B5671B80037F289 /* EegeoMapsContainerViewController.m in Sources */,
 				18A87A041B83663900AAAC09 /* MainViewController.m in Sources */,
 				183ED1C11B4C378200B68A82 /* Main.m in Sources */,
+				E0CF30E41E30FEF5003D119A /* FoodStandardsApi.m in Sources */,
 				18A481831B7E22CB0038FB8A /* EegeoCustomAnnotationView.mm in Sources */,
-				18A4817F1B7E22CB0038FB8A /* AppleCustomAnnotationView.mm in Sources */,
+				E0CF30E71E312750003D119A /* Establishment.m in Sources */,
+				E0CF30E11E30FAFE003D119A /* BusinessType.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

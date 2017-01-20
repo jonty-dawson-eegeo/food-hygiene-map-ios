@@ -24,7 +24,7 @@
     
     m_pCurrentMapViewController = nil;
 
-    self.mapNames = @[@"Hygiene Ratings"];
+    self.mapNames = @[@"UK Food Hygiene Ratings"];
     
     [self loadMapWithName: self.mapNames[0]];
 }
@@ -55,7 +55,7 @@
     [m_pMapContainer.view addSubview:m_pCurrentMapViewController.view];
     [m_pCurrentMapViewController didMoveToParentViewController:m_pMapContainer];
     
-    //self.titleBar.title = mapName;
+    self.titleBar.title = mapName;
     [self.navigationItem setTitle:mapName];
 }
 
@@ -63,8 +63,12 @@
 {
     switch(sender.selectedSegmentIndex)
     {
-        case 0: [m_pCurrentMapViewController goHome]; break;
-        case 1: [m_pCurrentMapViewController toggleFlatten];break;
+        case 0: [m_pCurrentMapViewController refreshResults];
+            break;
+        case 1: [m_pCurrentMapViewController goHome];
+            break;
+        case 2: [m_pCurrentMapViewController toggleFlatten];
+            break;
     }
 }
 

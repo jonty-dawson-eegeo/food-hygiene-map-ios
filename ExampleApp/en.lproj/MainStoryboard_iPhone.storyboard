@@ -10,7 +10,7 @@
         <!--Eegeo Maps Container View Controller-->
         <scene sceneID="vwz-GX-jmz">
             <objects>
-                <viewController storyboardIdentifier="Hygiene Ratings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DIw-PZ-sBR" customClass="EegeoMapsContainerViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UK Food Hygiene Ratings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DIw-PZ-sBR" customClass="EegeoMapsContainerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gwh-2o-t6C"/>
                         <viewControllerLayoutGuide type="bottom" id="0Je-yO-5SK"/>
@@ -60,7 +60,7 @@
             </objects>
             <point key="canvasLocation" x="-1284" y="39"/>
         </scene>
-        <!--Main View Controller-->
+        <!--UK Food Hygiene Ratings-->
         <scene sceneID="ruB-4t-hqC">
             <objects>
                 <viewController id="ehP-i0-H1Z" customClass="MainViewController" sceneMemberID="viewController">
@@ -114,7 +114,7 @@
                             <constraint firstItem="ceQ-Wo-oCy" firstAttribute="leading" secondItem="juI-Hi-PjM" secondAttribute="leading" id="qw2-u2-1Fv"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="gEI-89-AIE"/>
+                    <navigationItem key="navigationItem" title="UK Food Hygiene Ratings" id="gEI-89-AIE"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GuA-gY-InX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

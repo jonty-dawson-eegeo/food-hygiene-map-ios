@@ -10,5 +10,7 @@
 
 @property (nonatomic, strong) IBOutlet UIImageView* imageView;
 @property (nonatomic, strong) IBOutlet UILabel* title;
+@property (nonatomic, strong) IBOutlet UILabel* ratingDate;
+@property (nonatomic, strong) IBOutlet UILabel* businessType;
 
 @end

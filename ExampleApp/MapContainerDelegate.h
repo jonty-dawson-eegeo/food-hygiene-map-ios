@@ -4,6 +4,8 @@
 
 @protocol MapContainerDelegate
 
+-(void)refreshResults;
+
 -(void)goHome;
 
 -(void)toggleFlatten;

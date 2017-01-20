@@ -2,6 +2,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "EegeoCustomAnnotationView.h"
+#import "Establishment.h"
 
 @implementation EegeoCustomAnnotationView
 
@@ -20,6 +21,9 @@
     [self removeObserver:self forKeyPath:@"selected"];
     
     [self.title release];
+    [self.ratingDate release];
+    [self.businessType release];
+    
     [self.imageView release];
     
     [super dealloc];
@@ -27,17 +31,28 @@
 
 - (void)setAnnotationViewLabelsFromAnnotation
 {
-    [self.title setText:self.annotation.title];
+    [super setAnnotationViewLabelsFromAnnotation];
+    Establishment* establishment = (Establishment*)self.annotation;
+    [self.title setText:establishment.businessName];
+    [self.businessType setText:establishment.businessType];
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     
-    self.bounds = CGRectMake(0,
-                             0,
-                             self.imageView.bounds.size.width,
-                             self.imageView.bounds.size.height + self.title.bounds.size.height);
+    self.layer.cornerRadius = 16;
+    self.layer.shadowOffset = CGSizeMake(0, 0);
+    self.layer.shadowRadius = 16;
+    self.layer.shadowOpacity = 0.8f;
+    self.layer.shadowColor = [[UIColor grayColor] CGColor];
+    
+//    const int margin = 16;
+//    
+//    self.bounds = CGRectMake(margin,
+//                             margin,
+//                             self.imageView.bounds.size.width + margin,
+//                             self.imageView.bounds.size.height + self.title.bounds.size.height);
     
     self.layer.shouldRasterize = YES;
     self.layer.rasterizationScale = [[UIScreen mainScreen] scale];
@@ -47,16 +62,10 @@
 {
     if(self.selected)
     {
-        self.layer.cornerRadius = 20;
-        self.layer.shadowOffset = CGSizeMake(0, 0);
-        self.layer.shadowRadius = 16;
-        self.layer.shadowOpacity = 0.8f;
-        self.layer.shadowColor = [[UIColor greenColor] CGColor];
+
     }
     else
     {
-        self.layer.cornerRadius = 0;
-        self.layer.shadowOpacity = 0;
     }
 }
 

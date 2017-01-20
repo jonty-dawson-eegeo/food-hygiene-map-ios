@@ -3,6 +3,9 @@
 #import "EegeoMapsContainerViewController.h"
 #import "EGApi.h"
 #import "EegeoCustomAnnotationView.h"
+#import "FoodStandardsApi.h"
+#import "BusinessType.h"
+#import "Establishment.h"
 
 @import CoreLocation;
 
@@ -16,6 +19,13 @@
 
 @interface EegeoMapsContainerViewController ()
 @property (strong, nonatomic) EGMapView* eegeoMapView;
+
+@property (nonatomic, strong) NSArray * businessTypes;
+
+@property (nonatomic, strong) NSArray * authorities;
+
+@property (nonatomic, strong) NSArray * establishments;
+
 
 @property (strong, nonatomic) id<EGPrecacheOperation> precacheOperation;
 @property (strong, nonatomic) id<EGPolygon> geoFencePoly;
@@ -33,6 +43,7 @@
     bool m_mapMode;
     CLLocationCoordinate2D m_homeLocation;
     double m_homeDist;
+//    UITapGestureRecognizer* m_gestureTap;
 }
 
 
@@ -57,8 +68,42 @@
     
     [self.view insertSubview:self.eegeoMapView atIndex:0];
     
+    //[self fetchAuthorities];
+    //[self fetchBusinessTypes];
+    
     self.locationManager = [[[CLLocationManager alloc] init] autorelease];
+    
+    
+//    m_gestureTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gestureTap_Callback:)];
+//    //[m_gestureTap setDelegate:*m_pGestureRecognizer];
+//    m_gestureTap.cancelsTouchesInView = FALSE;
+
 }
+
+//-(void)gestureTap_Callback:(UITapGestureRecognizer*)recognizer
+//{
+//    NSLog(@"here");
+//}
+
+- (void) setEstablishments:(NSArray *)establishments
+{
+    for (id establishment in _establishments)
+    {
+        [self.eegeoMapApi removeAnnotation:establishment];
+        
+    }
+    
+    _establishments = [establishments copy];
+   
+    
+    for (id establishment in establishments)
+    {
+        [self.eegeoMapApi addAnnotation:establishment];
+
+    }
+}
+
+
 
 -(void) viewWillAppear:(BOOL)animated
 {
@@ -112,6 +157,13 @@
 
 }
 
+-(void)refreshResults
+{
+    if(self.eegeoMapApi != nil)
+    {
+        [self fetchEstablishments ];
+    }
+}
 
 -(void)goHome
 {
@@ -132,9 +184,7 @@
 - (void)handleMapAvailable
 {
     [self setLocation:m_homeLocation distanceMetres:m_homeDist ];
-    //[self addGeofencePolygon];
-    //[self addAnnotations];
-    //[self precacheBounds];
+    [self fetchEstablishments];
     [self updateTheme];
 }
 
@@ -231,65 +281,20 @@
     [self.eegeoMapApi addPolygon:self.geoFencePoly];
 }
 
-- (void)addAnnotations
-{
-    self.marker1 = [[[EGPointAnnotation alloc] init] autorelease];
-    self.marker1.coordinate = CLLocationCoordinate2DMake(37.794851, -122.402650);
-    [self.eegeoMapApi addAnnotation:self.marker1];
-    
-    // Set data after adding Annotation to test KVO.
-    self.marker1.title = @"Downtown";
-    self.marker1.subtitle = @"(Custom Annotation)";
-    
-    self.marker2 = [[[EGPointAnnotation alloc] init] autorelease];
-    self.marker2.coordinate = CLLocationCoordinate2DMake(37.792064, -122.403784);
-    self.marker2.title = @"California Street";
-    self.marker2.subtitle = @"(Default Callout)";
-    [self.eegeoMapApi addAnnotation:self.marker2];
-    
-    self.marker3 = [[[EGPointAnnotation alloc] init] autorelease];
-    self.marker3.coordinate = CLLocationCoordinate2DMake(37.795141, -122.397669);
-    self.marker3.title = @"Three Embarcadero";
-    self.marker3.subtitle = @"(Default Callout)";
-    [self.eegeoMapApi addAnnotation:self.marker3];
-    
-    // Test programmatic selection.
-    [self.eegeoMapApi selectAnnotation:self.marker1 animated:NO];
-    [self.eegeoMapApi selectAnnotation:self.marker3 animated:NO];
-}
-
-- (void)precacheBounds
-{
-    EGCoordinateBounds bounds = EGCoordinateBoundsMake(CLLocationCoordinate2DMake(37.794771, -122.400929),
-                                                       CLLocationCoordinate2DMake(37.792440, -122.396369));
-    
-    id<EGPrecacheOperation> precacheCancelExample = [self.eegeoMapApi precacheMapDataInCoordinateBounds:bounds];
-    
-    [precacheCancelExample cancel];
-    
-    self.precacheOperation = [self.eegeoMapApi precacheMapDataInCoordinateBounds:bounds];
-}
-
-- (void)precacheOperationCompleted:(id<EGPrecacheOperation>)precacheOperation
-{
-    BOOL cancelled = [precacheOperation cancelled];
-    BOOL completed = [precacheOperation completed];
-    
-    printf("%s\n", cancelled ? "Cancelled" : "Not cancelled");
-    printf("%s\n", completed ? "Completed" : "Not completed");
-    printf("Percent: %d\n", [precacheOperation percentComplete]);
-    
-    if(precacheOperation == self.precacheOperation)
-    {
-        self.precacheOperation = nil;
-    }
-}
 
 - (EGAnnotationView*)viewForAnnotation:(id<EGAnnotation>)annotation
 {
-    // Custom view for marker one that always shows data, no callout as always showing data.
-    if(annotation == self.marker1)
-    {
+//    Establishment* establishment = (Establishment*)annotation;
+//    if (establishment)
+//    {
+//        return [self customViewForEstablishmentAnnotation:establishment];
+//    }
+    // use default view.
+    return nil;
+}
+
+- (EGAnnotationView*)customViewForEstablishmentAnnotation:(Establishment*)establishment
+{
         // XIB defined in app, code-behind extends EGAnnotationView.
         EegeoCustomAnnotationView* pCustomView = [[[NSBundle mainBundle]
                                                    loadNibNamed:@"EegeoCustomAnnotationView"
@@ -299,14 +304,24 @@
         pCustomView.canShowCallout = NO;
         
         // Manually (re)bind the annotation, intially nil for custom view.
-        pCustomView.annotation = annotation;
-        pCustomView.imageView.image = [UIImage imageNamed:@"custom_annotation_image"];
+        pCustomView.annotation = establishment;
+        pCustomView.imageView.image = [UIImage imageNamed:@"fhis_pass.jpg"];
+        pCustomView.title.text = establishment.title;
+        pCustomView.businessType.text = establishment.businessType;
+        
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        
+        [dateFormat setDateFormat:@"dd/MM/yyyy"];
+        pCustomView.ratingDate.text = [NSString stringWithFormat:@"Rated: %@",[dateFormat stringFromDate:establishment.ratingDate]];
+        
         
         pCustomView.centerOffset = CGPointMake(-pCustomView.frame.size.width * 0.5f,
                                                -pCustomView.frame.size.height);
         
+        
+        pCustomView.hidden = YES;
         return pCustomView;
-    }
+    
     
     // For other pins use default view.
     return nil;
@@ -314,39 +329,202 @@
 
 - (void)didSelectAnnotation:(id<EGAnnotation>)annotation
 {
-    // Add a nice left callout accessory.
     EGAnnotationView* view = [self.eegeoMapApi viewForAnnotation:annotation];
-    view.leftCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    view.userInteractionEnabled = YES;
+    
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    button.userInteractionEnabled = YES;
+    view.rightCalloutAccessoryView = button;
+    
+    //view.rightCalloutAccessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fhis_pass.jpg"]];
+   
+//    [button addTarget:self
+//               action:@selector(onRightCalloutAccessoryTouchUpInside:)
+//     forControlEvents: UIControlEventTouchDown];
+//    
+//    [button addGestureRecognizer: m_gestureTap];
     
     printf("Selected annotation with title: %s\n", [[annotation title] UTF8String]);
 }
+
+//-(void)onRightCalloutAccessoryTouchUpInside:(id)sender{
+//    
+//    NSLog(@"TouchUpInside");
+//}
+
+//- (void)mapView:(EGMapView *)mapView annotationView:(EGAnnotationView*)view calloutAccessoryControlTapped:(UIControl *)control {
+//    NSLog(@"here");
+//}
 
 - (void)didDeselectAnnotation:(id<EGAnnotation>)annotation
 {
     printf("Deselected annotation with title: %s\n", [[annotation title] UTF8String]);
     
-    // Remove the left callout accessory.
     EGAnnotationView* view = [self.eegeoMapApi viewForAnnotation:annotation];
-    view.leftCalloutAccessoryView = nil;
+    view.rightCalloutAccessoryView = nil;
 }
+
+
+
+
 
 - (BOOL)shouldUseEegeoPinTextureAnnotation:(id<EGAnnotation>)annotation eegeoPinTexturePageIndex:(NSInteger*)eegeoPinTexturePageIndex;
 {
-    // No pin for annotation 1 (with the custom view).
-    if(annotation == self.marker1)
-    {
-        return NO;
-    }
+    Establishment* establishment = (Establishment*)annotation;
     
-    // Specify annotation texture index for annotation 3.
-    if(annotation == self.marker3)
+    if (establishment)
     {
-        *eegeoPinTexturePageIndex = 4;
+        int pinIndex = 1;
+        
+        if ([establishment.schemeType isEqual: @"FHRS"])
+        {
+            if ([establishment.ratingValue  isEqual: @"5"] ||
+                [establishment.ratingValue  isEqual: @"4"])
+            {
+                pinIndex = 0;
+            }
+            else if ([establishment.ratingValue  isEqual: @"0"] ||
+                     [establishment.ratingValue  isEqual: @"1"])
+            {
+                pinIndex = 2;
+            }
+        }
+        else
+        {
+            if ([establishment.ratingValue  isEqual: @"Pass"])
+            {
+                pinIndex = 0;
+            }
+            else if ([establishment.ratingValue  isEqual: @"Improvement Required"])
+            {
+                pinIndex = 2;
+            }
+            else if ([establishment.ratingValue  isEqual: @"Exempt"])
+            {
+                pinIndex = 1;
+            }
+        }
+        
+        *eegeoPinTexturePageIndex = pinIndex;
+        return YES;
     }
+
+    *eegeoPinTexturePageIndex = 0;
+
     
-    // Use default value for other annotations.
-    return YES;
+    return NO;
 }
+
+
+- (void)fetchBusinessTypes
+{
+    [[FoodStandardsApi sharedInstance] fetchBusinessTypes:^(BOOL success, NSArray *businessTypesJson)
+    {
+        if (success)
+        {
+            NSMutableArray * businessTypes = [NSMutableArray arrayWithCapacity:businessTypesJson.count];
+            for (NSDictionary * json in businessTypesJson)
+            {
+                BusinessType * businessType = [[BusinessType alloc] initWithJson: json];
+                if (businessType)
+                {
+                    [businessTypes addObject:businessType];
+                }
+            }
+            
+            _businessTypes = [businessTypes copy];
+
+        }
+        else
+        {
+            _businessTypes = @[];
+        }
+    }];
+}
+
+
+- (void)fetchAuthorities
+{
+    [[FoodStandardsApi sharedInstance] fetchAuthorities:^(BOOL success, NSArray *authorities)
+     {
+         if (success)
+         {
+             _authorities = authorities;
+         }
+         else
+         {
+             _authorities = @[];
+         }
+     }];
+    
+}
+
+// data set looks like latlong was derived from reverse geocode from Post Code, nudge coincident points apart
+- (void) hackNudgeCoords:(NSArray*) establishments
+{
+    for (Establishment * a in establishments)
+    {
+        for (Establishment * b in establishments)
+        {
+            if (a == b)
+            {
+                continue;
+            }
+            if (a.coordinate.latitude == b.coordinate.latitude &&
+                a.coordinate.longitude == b.coordinate.longitude)
+            {
+                b.coordinate = CLLocationCoordinate2DMake(b.coordinate.latitude, b.coordinate.longitude + 0.00005);
+            }
+        }
+    }
+}
+
+- (void) fetchEstablishments
+{
+    CLLocationCoordinate2D location = [self.eegeoMapApi getCenterCoordinate];
+    
+    [[FoodStandardsApi sharedInstance] fetchEstablishmentsAroundLocation:location withMaxRadiusMiles:1 andExecuteBlock:^(BOOL success, NSArray *establishmentsJson) {
+        if (success) {
+            NSArray *filteredEstablishmentsJson = [establishmentsJson filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id establishment, NSDictionary *bindings) {
+                    NSString *ratingValue = [establishment objectForKey:@"RatingValue"];
+                if ([ratingValue  isEqual: @"Exempt"])
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }]];
+            
+            
+            NSMutableArray * establishments = [NSMutableArray arrayWithCapacity:filteredEstablishmentsJson.count];
+            for (NSDictionary * json in filteredEstablishmentsJson)
+            {
+                Establishment * establishment = [[[Establishment alloc] initWithJson: json] autorelease];
+                if (establishment)
+                {
+                    //NSLog(@"%@;%@;%@", establishment.businessName, establishment.businessType, establishment.ratingValue);
+                    
+                    
+                    [establishments addObject:establishment];
+                }
+            }
+            
+
+            [self hackNudgeCoords:establishments];
+
+            
+            [self setEstablishments:establishments];
+        }
+        else
+        {
+            [self setEstablishments: @[] ];
+        }
+    }];
+}
+
+
 
 @end
 
