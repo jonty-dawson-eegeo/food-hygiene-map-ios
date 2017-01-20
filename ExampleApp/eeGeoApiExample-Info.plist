@@ -4,12 +4,10 @@
 <dict>
 	<key>eeGeoMapsApiKey</key>
 	<string>${EEGEO_API_KEY}</string>
-	<key>GoogleMapsApiKey</key>
-	<string>${GOOGLE_API_KEY}</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>iOS Starter</string>
+	<string>Hygiene Ratings</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIcons</key>
@@ -32,6 +30,19 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>api.ratings.food.gov.uk</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UIMainStoryboardFile</key>
@@ -58,18 +69,5 @@
 	</array>
 	<key>eeGeoAppBase</key>
 	<string>iOS-API</string>
-<key>NSAppTransportSecurity</key>
-<dict>
-    <key>NSExceptionDomains</key>
-    <dict>
-        <key>api.ratings.food.gov.uk</key>
-        <dict>
-            <key>NSIncludesSubdomains</key>
-            <true/>
-            <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-            <true/>
-        </dict>
-    </dict>
-</dict>
 </dict>
 </plist>
