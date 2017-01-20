@@ -280,11 +280,18 @@
     EGAnnotationView* view = [self.eegeoMapApi viewForAnnotation:annotation];
     view.userInteractionEnabled = YES;
     
-    UIButton* button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    button.userInteractionEnabled = YES;
-    view.rightCalloutAccessoryView = button;
+    //UIButton* button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    //button.userInteractionEnabled = YES;
+    //iew.rightCalloutAccessoryView = button;
     
-    //view.rightCalloutAccessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fhis_pass.jpg"]];
+    Establishment* establishment = (Establishment*)view.annotation;
+    if (establishment)
+    {
+        
+        view.rightCalloutAccessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:establishment.iconName]];
+    }
+    
+    //
    
 //    [button addTarget:self
 //               action:@selector(onRightCalloutAccessoryTouchUpInside:)
@@ -332,7 +339,8 @@
                 pinIndex = 0;
             }
             else if ([establishment.ratingValue  isEqual: @"0"] ||
-                     [establishment.ratingValue  isEqual: @"1"])
+                     [establishment.ratingValue  isEqual: @"1"] ||
+                     [establishment.ratingValue  isEqual: @"2"])
             {
                 pinIndex = 2;
             }

@@ -19,6 +19,7 @@
 
 @property (nonatomic, copy) NSString *ratingKey;
 
+@property (nonatomic, copy) NSString *ratingName;
 
 @property (nonatomic, copy) NSDate *ratingDate;
 
@@ -28,7 +29,7 @@
 
 @property (nonatomic, copy) NSString *localAuthorityName;
 
-
+@property (nonatomic, copy) NSString *iconName;
 
 
 
