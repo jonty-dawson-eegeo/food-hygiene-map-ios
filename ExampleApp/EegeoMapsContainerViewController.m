@@ -28,6 +28,8 @@
 
 @property (nonatomic, strong) NSArray * establishments;
 
+@property (nonatomic) BOOL hideExempt;
+
 @property (strong, nonatomic) id<EGPolygon> geoFencePoly;
 
 @end
@@ -38,7 +40,6 @@
     bool m_mapMode;
     CLLocationCoordinate2D m_homeLocation;
     double m_homeDist;
-//    UITapGestureRecognizer* m_gestureTap;
 }
 
 
@@ -64,18 +65,7 @@
     //[self fetchBusinessTypes];
     
     self.locationManager = [[[CLLocationManager alloc] init] autorelease];
-    
-    
-//    m_gestureTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gestureTap_Callback:)];
-//    //[m_gestureTap setDelegate:*m_pGestureRecognizer];
-//    m_gestureTap.cancelsTouchesInView = FALSE;
-
 }
-
-//-(void)gestureTap_Callback:(UITapGestureRecognizer*)recognizer
-//{
-//    NSLog(@"here");
-//}
 
 - (void) setEstablishments:(NSArray *)establishments
 {
@@ -280,10 +270,6 @@
     EGAnnotationView* view = [self.eegeoMapApi viewForAnnotation:annotation];
     view.userInteractionEnabled = YES;
     
-    //UIButton* button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    //button.userInteractionEnabled = YES;
-    //iew.rightCalloutAccessoryView = button;
-    
     Establishment* establishment = (Establishment*)view.annotation;
     if (establishment)
     {
@@ -294,7 +280,13 @@
         
 
         label.text = establishment.ratingName;
+        label.backgroundColor = establishment.ratingBackgroundColor;
+        label.textColor = establishment.ratingTextColor;
+        label.textAlignment = NSTextAlignmentCenter;
         [label sizeToFit];
+        CGRect frame = label.frame;
+        frame.size.width += 20; 
+        label.frame = frame;
 
         view.rightCalloutAccessoryView = label;
     }
@@ -315,9 +307,6 @@
 //    NSLog(@"TouchUpInside");
 //}
 
-//- (void)mapView:(EGMapView *)mapView annotationView:(EGAnnotationView*)view calloutAccessoryControlTapped:(UIControl *)control {
-//    NSLog(@"here");
-//}
 
 - (void)didDeselectAnnotation:(id<EGAnnotation>)annotation
 {
@@ -366,7 +355,7 @@
             }
             else if ([establishment.ratingValue  isEqual: @"Exempt"])
             {
-                pinIndex = 1;
+                pinIndex = 3;
             }
         }
         
@@ -468,7 +457,7 @@
         if (success) {
             NSArray *filteredEstablishmentsJson = [establishmentsJson filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id establishment, NSDictionary *bindings) {
                     NSString *ratingValue = [establishment objectForKey:@"RatingValue"];
-                if ([ratingValue  isEqual: @"Exempt"])
+                if (_hideExempt && [ratingValue  isEqual: @"Exempt"])
                 {
                     return false;
                 }

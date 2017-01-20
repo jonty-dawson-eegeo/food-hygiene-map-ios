@@ -23,14 +23,15 @@
 
 @property (nonatomic, copy) NSDate *ratingDate;
 
-//@property (nonatomic) CLLocationCoordinate2D location;
-
 @property (nonatomic, copy) NSNumber *localAuthorityCode;
 
 @property (nonatomic, copy) NSString *localAuthorityName;
 
 @property (nonatomic, copy) NSString *iconName;
 
+@property (nonatomic, copy) UIColor* ratingBackgroundColor;
+
+@property (nonatomic, copy) UIColor* ratingTextColor;
 
 
 - (id) initWithJson: (NSDictionary *) json;

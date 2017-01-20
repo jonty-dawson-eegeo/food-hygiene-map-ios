@@ -42,11 +42,53 @@
       
         self.title = _businessName;
         self.subtitle = [NSString stringWithFormat:@"Rated: %@",[dateFormatter stringFromDate:_ratingDate]];
+        
+        self.ratingBackgroundColor = [Establishment ratingBackgroundColorFromKey:_ratingKey];
+
+        self.ratingTextColor = [Establishment ratingTextColorFromKey:_ratingKey];
     }
     
     return self;
 }
 
+
+UIColor* UIColorFromRGB(uint rgbValue)
+{
+    return [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.f
+                           green:((float)((rgbValue & 0x00FF00) >>  8))/255.f
+                            blue:((float)((rgbValue & 0x0000FF) >>  0))/255.f
+                           alpha:1.f];
+}
+
+
++(UIColor*) ratingBackgroundColorFromKey:(NSString*) ratingKey
+{
+    NSDictionary *colorLookup = @{
+                                       @"fhrs_0_en-gb": [UIColor blackColor],
+                                       @"fhrs_1_en-gb": [UIColor blackColor],
+                                       @"fhrs_2_en-gb": [UIColor blackColor],
+                                       @"fhrs_3_en-gb": [UIColor blackColor],
+                                       @"fhrs_4_en-gb": [UIColor blackColor],
+                                       @"fhrs_5_en-gb": [UIColor blackColor],
+                                       
+                                       @"fhis_pass_en-gb": UIColorFromRGB(0x0B5AAD),
+                                       @"fhis_improvement_required_en-gb": UIColorFromRGB(0xCD1708),
+                                       @"fhis_awaiting_publication_en-gb": UIColorFromRGB(0xD990D2),
+                                       @"fhis_awaiting_inspection_en-gb": UIColorFromRGB(0xF49C09),
+                                       @"fhis_exempt_en-gb": UIColorFromRGB(0xF49C09)
+                                       };
+    return colorLookup[ratingKey];
+}
+
++(UIColor*) ratingTextColorFromKey:(NSString*) ratingKey
+{
+    if ([ratingKey  isEqual: @"fhis_awaiting_publication_en"] ||
+         [ratingKey  isEqual: @"fhis_awaiting_publication_en"])
+    {
+        return [UIColor blackColor];
+    }
+    return [UIColor whiteColor];
+}
 
 +(NSString*) ratingNameFromValue:(NSString*) ratingValue withSchemeType:(NSString*) schemeType
 {
