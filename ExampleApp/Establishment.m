@@ -37,8 +37,11 @@
         self.localAuthorityName = json[@"LocalAuthorityName"];
         
         self.iconName = [Establishment iconNameFromBusinessTypeId: _businessTypeID];
+        
+        [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+      
         self.title = _businessName;
-        self.subtitle = _ratingName;
+        self.subtitle = [NSString stringWithFormat:@"Rated: %@",[dateFormatter stringFromDate:_ratingDate]];
     }
     
     return self;

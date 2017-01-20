@@ -288,7 +288,15 @@
     if (establishment)
     {
         
-        view.rightCalloutAccessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:establishment.iconName]];
+        view.leftCalloutAccessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:establishment.iconName]];
+        
+        UILabel* label = [[UILabel alloc ] init ];
+        
+
+        label.text = establishment.ratingName;
+        [label sizeToFit];
+
+        view.rightCalloutAccessoryView = label;
     }
     
     //
@@ -316,6 +324,7 @@
     printf("Deselected annotation with title: %s\n", [[annotation title] UTF8String]);
     
     EGAnnotationView* view = [self.eegeoMapApi viewForAnnotation:annotation];
+    view.leftCalloutAccessoryView = nil;
     view.rightCalloutAccessoryView = nil;
 }
 
