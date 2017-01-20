@@ -13,11 +13,12 @@ The app was created as part of an internal app-jam, based on a duplication of th
 
 ## Setup 
 
-The eeGeo iOS API is installed via [CocoaPods](https://cocoapods.org/pods/eegeo).
+Package dependencies are installed via [CocoaPods](https://cocoapods.org).
+The app makes use of the [eeGeo](https://cocoapods.org/pods/eegeo), [AFNetworking](https://cocoapods.org/pods/AFNetworking) and [FPPopover](https://cocoapods.org/pods/FPPopover) pods.
 
 1. Install CocoaPods as described in the [CocoaPods guide](https://guides.cocoapods.org/using/getting-started.html#getting-started).
 2. Clone this repo: `git clone git@github.com:eegeo/food-hygiene-map-ios.git`.
-3. Install the eeGeo pod, and other app dependencies by running `pod install` from the repo root.
+3. Install dependencies by running `pod install` from the repo root.
 4. Obtain an [eeGeo API key](https://www.eegeo.com/developers/apikeys) and place it in the [eeGeoApiExample-Info.plist](https://github.com/eegeo/food-hygiene-map-ios/blob/master/ExampleApp/eeGeoApiExample-Info.plist#L6) file.
 5. Open, build, and run **eeGeoApiExample.xcworkspace** in Xcode.
 
