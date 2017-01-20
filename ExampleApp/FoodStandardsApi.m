@@ -104,12 +104,19 @@ NSURLRequest* buildApiRequest(NSURL *url)
     // sortOptionKey param doesn't appear to be working
     //NSURLQueryItem *sortOptionKey = [NSURLQueryItem queryItemWithName:@"sortOptionKey" value:@"Distance"];
     //NSURLQueryItem *pageNumber = [NSURLQueryItem queryItemWithName:@"pageNumber" value:@"0"];
-    //NSURLQueryItem *pageSize = [NSURLQueryItem queryItemWithName:@"pageSize" value:@"20"];
-    
     //components.queryItems = @[ latitude, longitude, maxDistanceLimit, sortOptionKey, pageNumber, pageSize ];
-    //components.queryItems = @[ latitude, longitude, maxDistanceLimit, pageSize ];
+     
+    const bool limitPageSize = false;
     
-    components.queryItems = @[ latitude, longitude, maxDistanceLimit ];
+    if (limitPageSize)
+    {
+        NSURLQueryItem *pageSize = [NSURLQueryItem queryItemWithName:@"pageSize" value:@"20"];
+        components.queryItems = @[ latitude, longitude, maxDistanceLimit, pageSize ];
+    }
+    else
+    {
+        components.queryItems = @[ latitude, longitude, maxDistanceLimit ];
+    }
     
     NSURL *url = components.URL;
     
