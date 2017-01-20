@@ -58,5 +58,18 @@
 	</array>
 	<key>eeGeoAppBase</key>
 	<string>iOS-API</string>
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSExceptionDomains</key>
+    <dict>
+        <key>api.ratings.food.gov.uk</key>
+        <dict>
+            <key>NSIncludesSubdomains</key>
+            <true/>
+            <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+            <true/>
+        </dict>
+    </dict>
+</dict>
 </dict>
 </plist>
